@@ -7,8 +7,8 @@ defmodule MixConfig.MixProject do
       version: "0.1.0",
       elvis: [
         %{
-          dirs: ['.'],
-          filter: '*.erl',
+          dirs: [~c"."],
+          filter: ~c"*.erl",
           rules: [
             {:elvis_style, :no_tabs, :disable}
           ],

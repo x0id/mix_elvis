@@ -7,12 +7,12 @@ defmodule Mix.Tasks.Elvis do
 
   @default_config [
     %{
-      dirs: ['src'],
-      include_dirs: ['include'],
-      filter: '*.erl',
+      dirs: [~c"src"],
+      include_dirs: [~c"include"],
+      filter: ~c"*.erl",
       ruleset: :erl_files
     },
-    %{dirs: ['.'], filter: 'elvis.config', ruleset: :elvis_config}
+    %{dirs: [~c"."], filter: ~c"elvis.config", ruleset: :elvis_config}
   ]
 
   @options [
@@ -42,7 +42,7 @@ defmodule Mix.Tasks.Elvis do
 
   defp config do
     with :error <- Keyword.fetch(Mix.Project.config(), :elvis),
-         [] <- :elvis_config.default() do
+         [] <- :elvis_config.from_file(~c"elvis.config") do
       @default_config
     else
       config when is_list(config) ->
